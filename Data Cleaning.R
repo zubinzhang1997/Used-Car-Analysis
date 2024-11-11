@@ -71,4 +71,3 @@ three_states <- three_states %>%
   select(id, everything())
 
 write.csv(three_states, "cleaned_vehicles.csv", row.names = FALSE)
-
