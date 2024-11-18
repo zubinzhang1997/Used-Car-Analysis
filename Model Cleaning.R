@@ -3,8 +3,7 @@ library(stringr)
 
 vehicles <- read.csv("cleaned_vehicles.csv")
 
-
-# Select features
+# Select specified features
 selected_features <- vehicles %>%
   select(price, year, manufacturer, odometer, model)
 
@@ -20,6 +19,7 @@ summary_table <- selected_features %>%
   summarise(unique_models = n_distinct(model)) %>% 
   arrange(desc(unique_models))
 
+# Display the summary table
 print(summary_table)
 
 
@@ -78,6 +78,9 @@ ford_model_counts <- selected_features %>%
 print(ford_model_counts)
 
 
+
+
+
 # Define the target models to keep for Chevrolet
 chevrolet_target_models <- c("Silverado", "Tahoe", "Corvette", "Malibu", 
                              "Impala", "Equinox", "Camaro", "Cruze", 
@@ -122,6 +125,13 @@ chevrolet_model_counts <- selected_features %>%
   count(model, sort = TRUE)
 
 print(chevrolet_model_counts)
+
+
+
+
+
+
+
 
 
 
@@ -170,6 +180,13 @@ toyota_model_counts <- selected_features %>%
 print(toyota_model_counts)
 
 
+
+
+
+
+
+
+
 # Define the target models to keep for Honda
 honda_target_models <- c("Accord", "Civic", "Cr-v", "Odyssey", 
                          "Pilot", "Fit", "Element")
@@ -209,6 +226,13 @@ honda_model_counts <- selected_features %>%
   count(model, sort = TRUE)
 
 print(honda_model_counts)
+
+
+
+
+
+
+
 
 
 # Define the target models to keep for Nissan
@@ -253,6 +277,13 @@ nissan_model_counts <- selected_features %>%
 print(nissan_model_counts)
 
 
+
+
+
+
+
+
+
 # Define the target models to keep for BMW
 bmw_target_models <- c("3 Series", "5 Series", "X5", "X3", 
                        "X1", "7 Series", "4 Series", "X6")
@@ -294,6 +325,14 @@ bmw_model_counts <- selected_features %>%
 
 print(bmw_model_counts)
 
+
+
+
+
+
+
+
+
 # Define the target models to keep for Jeep
 jeep_target_models <- c("Wrangler", "Grand Cherokee", "Cherokee", 
                         "Liberty", "Patriot", "Compass")
@@ -333,6 +372,14 @@ jeep_model_counts <- selected_features %>%
   count(model, sort = TRUE)
 
 print(jeep_model_counts)
+
+
+
+
+
+
+
+
 
 
 # Define the target models to keep for Mercedes-Benz
@@ -376,6 +423,16 @@ mercedes_model_counts <- selected_features %>%
 print(mercedes_model_counts)
 
 
+
+
+
+
+
+
+
+
+
+
 # Define the target models to keep for GMC
 gmc_target_models <- c("Sierra 1500", "Sierra 2500", "Acadia", "Yukon", "Terrain")
 
@@ -412,6 +469,12 @@ gmc_model_counts <- selected_features %>%
   count(model, sort = TRUE)
 
 print(gmc_model_counts)
+
+
+
+
+
+
 
 
 # Define the target models to keep for Hyundai
@@ -453,6 +516,15 @@ hyundai_model_counts <- selected_features %>%
 print(hyundai_model_counts)
 
 
+
+
+
+
+
+
+
+
+
 # Define the target models to keep for Subaru
 subaru_target_models <- c("Outback", "Forester", "Impreza", "Legacy", "WRX", "Crosstrek")
 
@@ -490,6 +562,21 @@ subaru_model_counts <- selected_features %>%
   count(model, sort = TRUE)
 
 print(subaru_model_counts)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Define the target models to keep for Volkswagen
@@ -530,6 +617,14 @@ volkswagen_model_counts <- selected_features %>%
 print(volkswagen_model_counts)
 
 
+
+
+
+
+
+
+
+
 # Define the target models to keep for Ram
 ram_target_models <- c("1500", "2500", "3500")
 
@@ -564,6 +659,17 @@ ram_model_counts <- selected_features %>%
   count(model, sort = TRUE)
 
 print(ram_model_counts)
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Define the target models to keep for Dodge
@@ -604,6 +710,21 @@ dodge_model_counts <- selected_features %>%
   count(model, sort = TRUE)
 
 print(dodge_model_counts)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -648,6 +769,18 @@ print(lexus_model_counts)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 # Define the target models to keep for Audi
 audi_target_models <- c("A4", "Q5", "Q7", "S5", "A3", "A6", "Q3", "A7", "A8")
 
@@ -688,6 +821,22 @@ audi_model_counts <- selected_features %>%
   count(model, sort = TRUE)
 
 print(audi_model_counts)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Define the target models to keep for Kia
@@ -742,12 +891,4 @@ selected_features <- selected_features %>%
   mutate(id = row_number()) %>%  # Add ID column after ordering
   select(id, everything())  # Ensure ID is the first column
 
-# Save the filtered and ordered dataset as "Model Cleaned.csv"
 write.csv(selected_features, "Model Cleaned.csv", row.names = FALSE)
-
-
-
-
-
-
-

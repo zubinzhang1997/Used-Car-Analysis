@@ -106,3 +106,13 @@ example_model_counts <- selected_features %>%
 print(example_model_counts)
 
 
+
+
+
+# Count the number of occurrences of each model for BMW
+bmw_model_counts <- selected_features %>%
+  filter(manufacturer == "Bmw") %>%
+  count(model, sort = TRUE)
+
+print(bmw_model_counts)
+
