@@ -12,17 +12,13 @@ colSums(is.na(selected_features))
 
 length(unique(selected_features$model))
 
-
 # Summarize the number of unique models for each manufacturer
 summary_table <- selected_features %>% 
   group_by(manufacturer) %>% 
   summarise(unique_models = n_distinct(model)) %>% 
   arrange(desc(unique_models))
 
-# Display the summary table
 print(summary_table)
-
-
 
 # Count the number of occurrences of each model for Ford
 ford_model_counts <- selected_features %>% 
@@ -52,11 +48,10 @@ standardize_ford_models <- function(df) {
       manufacturer == "Ford" & grepl("(?i)f[- ]?350", model, perl = TRUE) ~ "F-350",
       manufacturer == "Ford" & grepl("(?i)taurus", model) ~ "Taurus",
       manufacturer == "Ford" & grepl("(?i)expedition", model) ~ "Expedition",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
-# Apply the function to standardize Ford models
 selected_features <- standardize_ford_models(selected_features)
 
 # Verify changes for Ford models
@@ -76,9 +71,6 @@ ford_model_counts <- selected_features %>%
   count(model, sort = TRUE)
 
 print(ford_model_counts)
-
-
-
 
 
 # Define the target models to keep for Chevrolet
@@ -101,7 +93,7 @@ standardize_chevrolet_models <- function(df) {
       manufacturer == "Chevrolet" & grepl("(?i)suburban", model) ~ "Suburban",
       manufacturer == "Chevrolet" & grepl("(?i)colorado", model) ~ "Colorado",
       manufacturer == "Chevrolet" & grepl("(?i)traverse", model) ~ "Traverse",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model 
     ))
 }
 
@@ -127,14 +119,6 @@ chevrolet_model_counts <- selected_features %>%
 print(chevrolet_model_counts)
 
 
-
-
-
-
-
-
-
-
 # Define the target models to keep for Toyota
 toyota_target_models <- c("Camry", "Tacoma", "Prius", "Corolla", 
                           "Rav4", "Tundra", "Sienna", "4runner", 
@@ -154,7 +138,7 @@ standardize_toyota_models <- function(df) {
       manufacturer == "Toyota" & grepl("(?i)4runner", model) ~ "4runner",
       manufacturer == "Toyota" & grepl("(?i)highlander", model) ~ "Highlander",
       manufacturer == "Toyota" & grepl("(?i)avalon", model) ~ "Avalon",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -180,13 +164,6 @@ toyota_model_counts <- selected_features %>%
 print(toyota_model_counts)
 
 
-
-
-
-
-
-
-
 # Define the target models to keep for Honda
 honda_target_models <- c("Accord", "Civic", "Cr-v", "Odyssey", 
                          "Pilot", "Fit", "Element")
@@ -202,7 +179,7 @@ standardize_honda_models <- function(df) {
       manufacturer == "Honda" & grepl("(?i)pilot", model) ~ "Pilot",
       manufacturer == "Honda" & grepl("(?i)fit", model) ~ "Fit",
       manufacturer == "Honda" & grepl("(?i)element", model) ~ "Element",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -228,13 +205,6 @@ honda_model_counts <- selected_features %>%
 print(honda_model_counts)
 
 
-
-
-
-
-
-
-
 # Define the target models to keep for Nissan
 nissan_target_models <- c("Altima", "Sentra", "Rogue", "Frontier", 
                           "Maxima", "Versa", "Pathfinder", "Murano")
@@ -251,7 +221,7 @@ standardize_nissan_models <- function(df) {
       manufacturer == "Nissan" & grepl("(?i)versa", model) ~ "Versa",
       manufacturer == "Nissan" & grepl("(?i)pathfinder", model) ~ "Pathfinder",
       manufacturer == "Nissan" & grepl("(?i)murano", model) ~ "Murano",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -277,13 +247,6 @@ nissan_model_counts <- selected_features %>%
 print(nissan_model_counts)
 
 
-
-
-
-
-
-
-
 # Define the target models to keep for BMW
 bmw_target_models <- c("3 Series", "5 Series", "X5", "X3", 
                        "X1", "7 Series", "4 Series", "X6")
@@ -300,7 +263,7 @@ standardize_bmw_models <- function(df) {
       manufacturer == "Bmw" & grepl("(?i)7 series|750", model) ~ "7 Series",
       manufacturer == "Bmw" & grepl("(?i)4 series|430|440", model) ~ "4 Series",
       manufacturer == "Bmw" & grepl("(?i)x6", model) ~ "X6",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -326,13 +289,6 @@ bmw_model_counts <- selected_features %>%
 print(bmw_model_counts)
 
 
-
-
-
-
-
-
-
 # Define the target models to keep for Jeep
 jeep_target_models <- c("Wrangler", "Grand Cherokee", "Cherokee", 
                         "Liberty", "Patriot", "Compass")
@@ -348,7 +304,7 @@ standardize_jeep_models <- function(df) {
       manufacturer == "Jeep" & grepl("(?i)liberty", model) ~ "Liberty",
       manufacturer == "Jeep" & grepl("(?i)patriot", model) ~ "Patriot",
       manufacturer == "Jeep" & grepl("(?i)compass", model) ~ "Compass",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -374,14 +330,6 @@ jeep_model_counts <- selected_features %>%
 print(jeep_model_counts)
 
 
-
-
-
-
-
-
-
-
 # Define the target models to keep for Mercedes-Benz
 mercedes_target_models <- c("C-class", "E-class", "S-class", "Gl-class", 
                             "Sl-class", "M-class", "Cls-class")
@@ -397,7 +345,7 @@ standardize_mercedes_models <- function(df) {
       manufacturer == "Mercedes-benz" & grepl("(?i)m[- ]?class|ml 350", model) ~ "M-class",
       manufacturer == "Mercedes-benz" & grepl("(?i)gl[- ]?class|gl450", model) ~ "Gl-class",
       manufacturer == "Mercedes-benz" & grepl("(?i)cls[- ]?class", model) ~ "Cls-class",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -423,16 +371,6 @@ mercedes_model_counts <- selected_features %>%
 print(mercedes_model_counts)
 
 
-
-
-
-
-
-
-
-
-
-
 # Define the target models to keep for GMC
 gmc_target_models <- c("Sierra 1500", "Sierra 2500", "Acadia", "Yukon", "Terrain")
 
@@ -445,7 +383,7 @@ standardize_gmc_models <- function(df) {
       manufacturer == "Gmc" & grepl("(?i)acadia", model) ~ "Acadia",
       manufacturer == "Gmc" & grepl("(?i)yukon", model) ~ "Yukon",
       manufacturer == "Gmc" & grepl("(?i)terrain", model) ~ "Terrain",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -472,11 +410,6 @@ print(gmc_model_counts)
 
 
 
-
-
-
-
-
 # Define the target models to keep for Hyundai
 hyundai_target_models <- c("Sonata", "Elantra", "Santa Fe", "Tucson", "Accent", "Veloster")
 
@@ -490,7 +423,7 @@ standardize_hyundai_models <- function(df) {
       manufacturer == "Hyundai" & grepl("(?i)tucson", model) ~ "Tucson",
       manufacturer == "Hyundai" & grepl("(?i)accent", model) ~ "Accent",
       manufacturer == "Hyundai" & grepl("(?i)veloster", model) ~ "Veloster",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -517,14 +450,6 @@ print(hyundai_model_counts)
 
 
 
-
-
-
-
-
-
-
-
 # Define the target models to keep for Subaru
 subaru_target_models <- c("Outback", "Forester", "Impreza", "Legacy", "WRX", "Crosstrek")
 
@@ -538,7 +463,7 @@ standardize_subaru_models <- function(df) {
       manufacturer == "Subaru" & grepl("(?i)legacy", model) ~ "Legacy",
       manufacturer == "Subaru" & grepl("(?i)wrx", model) ~ "WRX",
       manufacturer == "Subaru" & grepl("(?i)crosstrek", model) ~ "Crosstrek",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -565,20 +490,6 @@ print(subaru_model_counts)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Define the target models to keep for Volkswagen
 volkswagen_target_models <- c("Jetta", "Passat", "Tiguan", "Beetle", "Golf")
 
@@ -591,7 +502,7 @@ standardize_volkswagen_models <- function(df) {
       manufacturer == "Volkswagen" & grepl("(?i)tiguan", model) ~ "Tiguan",
       manufacturer == "Volkswagen" & grepl("(?i)beetle", model) ~ "Beetle",
       manufacturer == "Volkswagen" & grepl("(?i)golf", model) ~ "Golf",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -618,13 +529,6 @@ print(volkswagen_model_counts)
 
 
 
-
-
-
-
-
-
-
 # Define the target models to keep for Ram
 ram_target_models <- c("1500", "2500", "3500")
 
@@ -635,7 +539,7 @@ standardize_ram_models <- function(df) {
       manufacturer == "Ram" & grepl("(?i)1500", model) ~ "1500",
       manufacturer == "Ram" & grepl("(?i)2500", model) ~ "2500",
       manufacturer == "Ram" & grepl("(?i)3500", model) ~ "3500",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -661,17 +565,6 @@ ram_model_counts <- selected_features %>%
 print(ram_model_counts)
 
 
-
-
-
-
-
-
-
-
-
-
-
 # Define the target models to keep for Dodge
 dodge_target_models <- c("Charger", "Grand Caravan", "Challenger", 
                          "Durango", "Dart", "Journey")
@@ -686,7 +579,7 @@ standardize_dodge_models <- function(df) {
       manufacturer == "Dodge" & grepl("(?i)durango", model) ~ "Durango",
       manufacturer == "Dodge" & grepl("(?i)dart", model) ~ "Dart",
       manufacturer == "Dodge" & grepl("(?i)journey", model) ~ "Journey",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -713,21 +606,6 @@ print(dodge_model_counts)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Define the target models to keep for Lexus
 lexus_target_models <- c("Rx", "Es", "Gs", "Is", "Ls", "Nx", "Ct")
 
@@ -742,7 +620,7 @@ standardize_lexus_models <- function(df) {
       manufacturer == "Lexus" & grepl("(?i)ls", model) ~ "Ls",
       manufacturer == "Lexus" & grepl("(?i)nx", model) ~ "Nx",
       manufacturer == "Lexus" & grepl("(?i)ct", model) ~ "Ct",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -768,19 +646,6 @@ lexus_model_counts <- selected_features %>%
 print(lexus_model_counts)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Define the target models to keep for Audi
 audi_target_models <- c("A4", "Q5", "Q7", "S5", "A3", "A6", "Q3", "A7", "A8")
 
@@ -797,7 +662,7 @@ standardize_audi_models <- function(df) {
       manufacturer == "Audi" & grepl("(?i)q3", model) ~ "Q3",
       manufacturer == "Audi" & grepl("(?i)a7", model) ~ "A7",
       manufacturer == "Audi" & grepl("(?i)a8", model) ~ "A8",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -824,21 +689,6 @@ print(audi_model_counts)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Define the target models to keep for Kia
 kia_target_models <- c("Optima", "Soul", "Sorento", "Forte", "Sportage")
 
@@ -851,7 +701,7 @@ standardize_kia_models <- function(df) {
       manufacturer == "Kia" & grepl("(?i)sorento", model) ~ "Sorento",
       manufacturer == "Kia" & grepl("(?i)forte", model) ~ "Forte",
       manufacturer == "Kia" & grepl("(?i)sportage", model) ~ "Sportage",
-      TRUE ~ model # Keep the original model if it doesn't match any condition
+      TRUE ~ model
     ))
 }
 
@@ -885,10 +735,10 @@ target_manufacturers <- c("Ford", "Chevrolet", "Toyota", "Honda", "Nissan", "Bmw
 selected_features <- selected_features %>%
   filter(manufacturer %in% target_manufacturers)
 
-# Order by brand (manufacturer) first
+# Order by brand first
 selected_features <- selected_features %>%
   arrange(manufacturer) %>%
-  mutate(id = row_number()) %>%  # Add ID column after ordering
-  select(id, everything())  # Ensure ID is the first column
+  mutate(id = row_number()) %>%  
+  select(id, everything())  
 
 write.csv(selected_features, "Model Cleaned.csv", row.names = FALSE)

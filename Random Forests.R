@@ -13,6 +13,9 @@ test_data <- data[-train_index, ]
 set.seed(123)
 rf_model <- randomForest(price ~ ., data = train_data, importance = TRUE, ntree = 500)
 
+# Save the Random Forest model
+saveRDS(rf_model, "rf_model.rds")
+
 print(rf_model)
 
 # Predict on Test Data

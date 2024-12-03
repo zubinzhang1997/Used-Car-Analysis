@@ -70,6 +70,5 @@ three_states <- three_states %>%
   mutate(id = row_number()) %>%
   select(id, everything())
 
-# Save the cleaned dataset
 write.csv(three_states, "cleaned_vehicles.csv", row.names = FALSE)
 

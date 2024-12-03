@@ -91,28 +91,3 @@ ggplot(vehicles, aes(x = reorder(manufacturer, -table(manufacturer)[manufacturer
   labs(title = "Count of Vehicles by Manufacturer", x = "Manufacturer", y = "Count") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-
-#=========================================================================================================
-
-
-
-
-
-
-example_model_counts <- selected_features %>%
-  filter(manufacturer == "Ford") %>%
-  count(model, sort = TRUE)
-
-print(example_model_counts)
-
-
-
-
-
-# Count the number of occurrences of each model for BMW
-bmw_model_counts <- selected_features %>%
-  filter(manufacturer == "Bmw") %>%
-  count(model, sort = TRUE)
-
-print(bmw_model_counts)
-
